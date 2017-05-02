@@ -4,7 +4,7 @@
 #
 Name     : clr-desktop-defaults
 Version  : 8
-Release  : 11
+Release  : 12
 URL      : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v8/clr-desktop-defaults-8.tar.xz
 Source0  : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v8/clr-desktop-defaults-8.tar.xz
 Summary  : No detailed summary available
