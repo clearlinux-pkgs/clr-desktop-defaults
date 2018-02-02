@@ -4,7 +4,7 @@
 #
 Name     : clr-desktop-defaults
 Version  : 10
-Release  : 14
+Release  : 15
 URL      : https://github.com/clearlinux/clr-desktop-defaults/archive/v10.tar.gz
 Source0  : https://github.com/clearlinux/clr-desktop-defaults/archive/v10.tar.gz
 Summary  : No detailed summary available
