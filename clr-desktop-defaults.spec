@@ -4,18 +4,19 @@
 #
 Name     : clr-desktop-defaults
 Version  : 15
-Release  : 24
+Release  : 25
 URL      : https://github.com/clearlinux/clr-desktop-defaults/archive/V15.tar.gz
 Source0  : https://github.com/clearlinux/clr-desktop-defaults/archive/V15.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : MIT
 Requires: clr-desktop-defaults-bin = %{version}-%{release}
-Requires: clr-desktop-defaults-config = %{version}-%{release}
 Requires: clr-desktop-defaults-data = %{version}-%{release}
 Requires: clr-desktop-defaults-libexec = %{version}-%{release}
 Requires: clr-desktop-defaults-license = %{version}-%{release}
+Requires: clr-desktop-defaults-services = %{version}-%{release}
 BuildRequires : buildreq-meson
+Patch1: 0001-add-groups-the-gnome-shell-application-laucher.patch
 
 %description
 clr-desktop-defaults
@@ -28,19 +29,11 @@ Summary: bin components for the clr-desktop-defaults package.
 Group: Binaries
 Requires: clr-desktop-defaults-data = %{version}-%{release}
 Requires: clr-desktop-defaults-libexec = %{version}-%{release}
-Requires: clr-desktop-defaults-config = %{version}-%{release}
 Requires: clr-desktop-defaults-license = %{version}-%{release}
+Requires: clr-desktop-defaults-services = %{version}-%{release}
 
 %description bin
 bin components for the clr-desktop-defaults package.
-
-
-%package config
-Summary: config components for the clr-desktop-defaults package.
-Group: Default
-
-%description config
-config components for the clr-desktop-defaults package.
 
 
 %package data
@@ -54,7 +47,6 @@ data components for the clr-desktop-defaults package.
 %package libexec
 Summary: libexec components for the clr-desktop-defaults package.
 Group: Default
-Requires: clr-desktop-defaults-config = %{version}-%{release}
 Requires: clr-desktop-defaults-license = %{version}-%{release}
 
 %description libexec
@@ -69,15 +61,24 @@ Group: Default
 license components for the clr-desktop-defaults package.
 
 
+%package services
+Summary: services components for the clr-desktop-defaults package.
+Group: Systemd services
+
+%description services
+services components for the clr-desktop-defaults package.
+
+
 %prep
 %setup -q -n clr-desktop-defaults-15
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1540249129
+export SOURCE_DATE_EPOCH=1542089370
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
 ninja -v -C builddir
 
@@ -93,20 +94,22 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %defattr(-,root,root,-)
 /usr/bin/clr-desktop-files.sh
 
-%files config
-%defattr(-,root,root,-)
-/usr/lib/systemd/logind.conf.d/80-lidswitch.conf
-
 %files data
 %defattr(-,root,root,-)
 /usr/share/glib-2.0/schemas/10_gnome_settings.gschema.override
+/usr/share/xdg/autostart/clr-create-app-groups.desktop
 /usr/share/xdg/autostart/clr-desktop-files.desktop
 /usr/share/xdg/autostart/org.clearlinux.initFlathubRepo.desktop
 
 %files libexec
 %defattr(-,root,root,-)
+/usr/libexec/clr-create-application-groups
 /usr/libexec/clr-init-flathub-repo
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/clr-desktop-defaults/LICENSE
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/logind.conf.d/80-lidswitch.conf
