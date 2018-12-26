@@ -1,0 +1,124 @@
+From cfdaefc4c142ed596778839ba262a869041e2ed8 Mon Sep 17 00:00:00 2001
+From: Josue David Hernandez Gutierrez <josue.d.hernandez.gutierrez@intel.com>
+Date: Tue, 13 Nov 2018 00:01:38 -0600
+Subject: [PATCH] add groups the gnome shell application laucher
+
+Signed-off-by: Josue David Hernandez Gutierrez <josue.d.hernandez.gutierrez@intel.com>
+---
+ clr-create-app-groups.desktop.in              |  9 ++++++
+ clr-create-application-groups                 | 30 +++++++++++++++++++
+ meson.build                                   | 12 ++++++++
+ schemas/meson.build                           |  1 +
+ ...gnome.desktop.app-folders.gschema.override |  6 ++++
+ 5 files changed, 58 insertions(+)
+ create mode 100644 clr-create-app-groups.desktop.in
+ create mode 100755 clr-create-application-groups
+ create mode 100644 schemas/org.gnome.desktop.app-folders.gschema.override
+
+diff --git a/clr-create-app-groups.desktop.in b/clr-create-app-groups.desktop.in
+new file mode 100644
+index 0000000..2092f4e
+--- /dev/null
++++ b/clr-create-app-groups.desktop.in
+@@ -0,0 +1,9 @@
++[Desktop Entry]
++Name=Create Default Application Groups
++Comment=Create Application groups if they not exist
++Exec=@prefix@/libexec/clr-create-application-groups
++Terminal=false
++Type=Application
++Categories=
++NoDisplay=true
++OnlyShowIn=GNOME;
+diff --git a/clr-create-application-groups b/clr-create-application-groups
+new file mode 100755
+index 0000000..188d516
+--- /dev/null
++++ b/clr-create-application-groups
+@@ -0,0 +1,30 @@
++#!/bin/bash
++# 
++# Copyright (c) 2018 Intel Corporation
++#
++# Permission is hereby granted, free of charge, to any person obtaining a copy
++# of this software and associated documentation files (the "Software"), to deal
++# in the Software without restriction, including without limitation the rights
++# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++# copies of the Software, and to permit persons to whom the Software is
++# furnished to do so, subject to the following conditions:
++# 
++# The above copyright notice and this permission notice shall be included in
++# all copies or substantial portions of the Software.
++# 
++# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
++# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
++# THE SOFTWARE.
++#
++if gsettings get org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ name | grep -q ''; then
++    gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ name Games
++    gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ categories [\'Game\']
++fi
++
++if gsettings get org.gnome.desktop.app-folders folder-children | grep -iq yast; then
++    gsettings reset org.gnome.desktop.app-folders folder-children
++fi
+diff --git a/meson.build b/meson.build
+index b052cf7..2bddc3e 100644
+--- a/meson.build
++++ b/meson.build
+@@ -30,6 +30,13 @@ configure_file(
+     install_dir: join_paths(xdgdir, 'autostart')
+ )
+ 
++configure_file(
++    input: 'clr-create-app-groups.desktop.in',
++    output: 'clr-create-app-groups.desktop',
++    configuration: desktop_conf,
++    install_dir: join_paths(xdgdir, 'autostart')
++)
++
+ install_data(
+     'clr-desktop-files.sh',
+     install_dir : bindir
+@@ -40,5 +47,10 @@ install_data(
+     install_dir : libexecdir
+ )
+ 
++install_data(
++    'clr-create-application-groups',
++    install_dir : libexecdir
++)
++
+ subdir('schemas')
+ subdir('logind.conf.d')
+diff --git a/schemas/meson.build b/schemas/meson.build
+index fa2515b..5f066d5 100644
+--- a/schemas/meson.build
++++ b/schemas/meson.build
+@@ -13,6 +13,7 @@ gnome_schemas = [
+     'org.gnome.shell.gschema.override',
+     'org.gnome.Terminal.Legacy.Settings.gschema.override',
+     'org.gtk.Settings.FileChooser.gschema.override',
++    'org.gnome.desktop.app-folders.gschema.override',
+ ]
+ 
+ # Generate single schema override file from all input files using cat redirect
+diff --git a/schemas/org.gnome.desktop.app-folders.gschema.override b/schemas/org.gnome.desktop.app-folders.gschema.override
+new file mode 100644
+index 0000000..a973582
+--- /dev/null
++++ b/schemas/org.gnome.desktop.app-folders.gschema.override
+@@ -0,0 +1,6 @@
++[org.gnome.desktop.app-folders]
++folder-children=['Utilities', 'Sundry', 'Games']
++
++[org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/]
++categories=['Game']
++name=Games
+-- 
+2.20.0
+
