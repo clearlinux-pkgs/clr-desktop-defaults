@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBFF2F5A2CA201B84 (ikey.doherty@intel.com)
 #
 Name     : clr-desktop-defaults
-Version  : 17
-Release  : 31
-URL      : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v17/clr-desktop-defaults-17.tar.xz
-Source0  : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v17/clr-desktop-defaults-17.tar.xz
-Source99 : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v17/clr-desktop-defaults-17.tar.xz.asc
+Version  : 18
+Release  : 32
+URL      : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz
+Source0  : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz
+Source99 : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : MIT
@@ -18,7 +18,7 @@ Requires: clr-desktop-defaults-data = %{version}-%{release}
 Requires: clr-desktop-defaults-libexec = %{version}-%{release}
 Requires: clr-desktop-defaults-license = %{version}-%{release}
 BuildRequires : buildreq-meson
-Patch1: 0001-add-groups-the-gnome-shell-application-laucher.patch
+BuildRequires : dconf-dev
 
 %description
 clr-desktop-defaults
@@ -63,15 +63,14 @@ license components for the clr-desktop-defaults package.
 
 
 %prep
-%setup -q -n clr-desktop-defaults-17
-%patch1 -p1
+%setup -q -n clr-desktop-defaults-18
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547217837
+export SOURCE_DATE_EPOCH=1547474016
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
 ninja -v -C builddir
 
@@ -90,15 +89,17 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/dconf/profile/user
+/usr/share/defaults/clearlinux/dconf/clearlinux-defaults
 /usr/share/glib-2.0/schemas/10_gnome_settings.gschema.override
-/usr/share/xdg/autostart/clr-create-app-groups.desktop
 /usr/share/xdg/autostart/clr-desktop-files.desktop
+/usr/share/xdg/autostart/clr-migrate-settings.desktop
 /usr/share/xdg/autostart/org.clearlinux.initFlathubRepo.desktop
 
 %files libexec
 %defattr(-,root,root,-)
-/usr/libexec/clr-create-application-groups
 /usr/libexec/clr-init-flathub-repo
+/usr/libexec/clr-migrate-settings
 
 %files license
 %defattr(0644,root,root,0755)
