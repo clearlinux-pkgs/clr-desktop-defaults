@@ -6,7 +6,7 @@
 #
 Name     : clr-desktop-defaults
 Version  : 18
-Release  : 32
+Release  : 33
 URL      : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz
 Source0  : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz
 Source99 : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz.asc
@@ -19,6 +19,7 @@ Requires: clr-desktop-defaults-libexec = %{version}-%{release}
 Requires: clr-desktop-defaults-license = %{version}-%{release}
 BuildRequires : buildreq-meson
 BuildRequires : dconf-dev
+Patch1: 0001-schemas-Allow-GNOME-sound-to-be-pushed-beyond-100-vo.patch
 
 %description
 clr-desktop-defaults
@@ -64,13 +65,14 @@ license components for the clr-desktop-defaults package.
 
 %prep
 %setup -q -n clr-desktop-defaults-18
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547474016
+export SOURCE_DATE_EPOCH=1547641576
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
 ninja -v -C builddir
 
