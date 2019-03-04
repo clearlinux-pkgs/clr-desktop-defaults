@@ -1,0 +1,50 @@
+From 4666a680e4681d0f924d8eabf1432f38fd836e39 Mon Sep 17 00:00:00 2001
+From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
+Date: Wed, 27 Feb 2019 10:30:42 -0600
+Subject: [PATCH] Add keyboard shortcut for launching terminal
+
+Signed-off-by: Simental Magana, Marcos <marcos.simental.magana@intel.com>
+---
+ dconf/system-wide.d/00-custom-shortcuts                    | 7 +++++++
+ schemas/meson.build                                        | 1 +
+ ...ome.settings-daemon.plugins.media-keys.gschema.override | 2 ++
+ 3 files changed, 10 insertions(+)
+ create mode 100644 dconf/system-wide.d/00-custom-shortcuts
+ create mode 100644 schemas/org.gnome.settings-daemon.plugins.media-keys.gschema.override
+
+diff --git a/dconf/system-wide.d/00-custom-shortcuts b/dconf/system-wide.d/00-custom-shortcuts
+new file mode 100644
+index 0000000..bead732
+--- /dev/null
++++ b/dconf/system-wide.d/00-custom-shortcuts
+@@ -0,0 +1,7 @@
++# dconf defaults for custom keybindings
++#
++
++[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
++binding='<Primary><Alt>t'
++command='/usr/bin/gnome-terminal'
++name='Launch Terminal'
+diff --git a/schemas/meson.build b/schemas/meson.build
+index 4f7728f..fae61ce 100644
+--- a/schemas/meson.build
++++ b/schemas/meson.build
+@@ -8,6 +8,7 @@ gnome_schemas = [
+     'org.gnome.desktop.wm.preferences.gschema.override',
+     'org.gnome.nautilus.icon-view.gschema.override',
+     'org.gnome.nautilus.preferences.gschema.override',
++    'org.gnome.settings-daemon.plugins.media-keys.gschema.override',
+     'org.gnome.settings-daemon.plugins.power.gschema.override',
+     'org.gnome.settings-daemon.plugins.xsettings.gschema.override',
+     'org.gnome.desktop.sound.gschema.override',
+diff --git a/schemas/org.gnome.settings-daemon.plugins.media-keys.gschema.override b/schemas/org.gnome.settings-daemon.plugins.media-keys.gschema.override
+new file mode 100644
+index 0000000..35c3b12
+--- /dev/null
++++ b/schemas/org.gnome.settings-daemon.plugins.media-keys.gschema.override
+@@ -0,0 +1,2 @@
++[org.gnome.settings-daemon.plugins.media-keys]
++custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+-- 
+2.20.1
+
