@@ -1,2 +1,3 @@
 0001-schemas-Allow-GNOME-sound-to-be-pushed-beyond-100-vo.patch
 0002-Add-keyboard-shortcut-for-launching-terminal.patch
+0003-fontconfig-ban-75-100-dpi-fonts.patch
