@@ -6,7 +6,7 @@
 #
 Name     : clr-desktop-defaults
 Version  : 18
-Release  : 34
+Release  : 35
 URL      : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz
 Source0  : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz
 Source99 : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz.asc
@@ -21,6 +21,8 @@ BuildRequires : buildreq-meson
 BuildRequires : dconf-dev
 Patch1: 0001-schemas-Allow-GNOME-sound-to-be-pushed-beyond-100-vo.patch
 Patch2: 0002-Add-keyboard-shortcut-for-launching-terminal.patch
+Patch3: 0003-fontconfig-ban-75-100-dpi-fonts.patch
+Patch4: 0004-schemas-dash-to-dock-set-dash-max-icon-size-to-42.patch
 
 %description
 clr-desktop-defaults
@@ -68,13 +70,15 @@ license components for the clr-desktop-defaults package.
 %setup -q -n clr-desktop-defaults-18
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551730509
+export SOURCE_DATE_EPOCH=1552435279
 export LDFLAGS="${LDFLAGS} -fno-lto"
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
 ninja -v -C builddir
@@ -96,6 +100,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %defattr(-,root,root,-)
 /usr/share/dconf/profile/user
 /usr/share/defaults/clearlinux/dconf/clearlinux-defaults
+/usr/share/defaults/fonts/conf.d/70-disable-x11-75-100-dpi.conf
 /usr/share/glib-2.0/schemas/10_gnome_settings.gschema.override
 /usr/share/xdg/autostart/clr-desktop-files.desktop
 /usr/share/xdg/autostart/clr-migrate-settings.desktop
