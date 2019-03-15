@@ -1,0 +1,50 @@
+From f4ea2f92c3e9c8b9701a141055ad321bb294c50d Mon Sep 17 00:00:00 2001
+From: Athenas Jimenez <athenas.jimenez.gonzalez@intel.com>
+Date: Fri, 15 Mar 2019 10:22:36 -0600
+Subject: [PATCH] Ardilla-2
+
+---
+ dconf/system-wide.d/00-profiles               | 21 +++++++++++++++++++
+ ...ome.Terminal.ProfilesList.gschema.override |  2 ++
+ 2 files changed, 23 insertions(+)
+ create mode 100644 dconf/system-wide.d/00-profiles
+ create mode 100644 schemas/org.gnome.Terminal.ProfilesList.gschema.override
+
+diff --git a/dconf/system-wide.d/00-profiles b/dconf/system-wide.d/00-profiles
+new file mode 100644
+index 0000000..811c87e
+--- /dev/null
++++ b/dconf/system-wide.d/00-profiles
+@@ -0,0 +1,21 @@
++[org/gnome/terminal/legacy/profiles:/:1b7b838b-513d-4bf3-a2a2-725162b52365]
++allow-bold=true
++background-color='#323232323232'
++bold-color='#ffffffffffff'
++bold-color-same-as-fg=true
++foreground-color='#ffffffffffff'
++palette=['#353535353535', '#d2d252525252', '#a5a5c2c26161', '#ffffc6c66d6d', '#6c6c9999bbbb', '#d1d19797d9d9', '#    bebed6d6ffff', '#eeeeeeeeecec', '#535353535353', '#f0f00c0c0c0c', '#c2c2e0e07575', '#e1e1e4e48b8b', '#8a8ab7b7d9d9    ', '#efefb5b5f7f7', '#dcdcf4f4ffff', '#ffffffffffff']
++use-theme-background=false
++use-theme-colors=false
++visible-name='Espresso'
++
++[org/gnome/terminal/legacy/profiles:/:1bfbe7e3-97ee-4ad1-8f7a-1945bebbb65e]
++allow-bold=true
++background-color='#2d2d37374343'
++bold-color='#e1e1e1e1e0e0'
++bold-color-same-as-fg=true
++foreground-color='#e1e1e1e1e0e0'
++palette=['#000000000000', '#ffff42424242', '#7474afaf6868', '#ffffadad2929', '#33338f8f8686', '#94941414e6e6', '#    2323d7d7d7d7', '#e1e1e1e1e0e0', '#555555555555', '#ffff32324242', '#7474cdcd6868', '#ffffb9b92929', '#2323d7d7d7d7    ', '#ffff3737ffff', '#0000edede1e1', '#ffffffffffff']
++use-theme-background=false
++use-theme-colors=false
++visible-name='Misterioso'
+diff --git a/schemas/org.gnome.Terminal.ProfilesList.gschema.override b/schemas/org.gnome.Terminal.ProfilesList.gschema.override
+new file mode 100644
+index 0000000..7ae7a34
+--- /dev/null
++++ b/schemas/org.gnome.Terminal.ProfilesList.gschema.override
+@@ -0,0 +1,2 @@
++[org.gnome.Terminal.ProfilesList]
++list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', '1b7b838b-513d-4bf3-a2a2-725162b52365', '1bfbe7e3-97ee-4ad1-8f7a-1945bebbb65e']
+-- 
+2.20.1
+

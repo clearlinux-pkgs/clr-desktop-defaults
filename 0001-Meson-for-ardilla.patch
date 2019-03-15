@@ -1,0 +1,24 @@
+From e8bc7ff6e8706e7781c1ff75449d6e94a6c7e74e Mon Sep 17 00:00:00 2001
+From: Athenas Jimenez <athenas.jimenez.gonzalez@intel.com>
+Date: Thu, 14 Mar 2019 17:13:17 -0600
+Subject: [PATCH] Meson for ardilla
+
+---
+ schemas/meson.build | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/schemas/meson.build b/schemas/meson.build
+index fae61ce..4516f4d 100644
+--- a/schemas/meson.build
++++ b/schemas/meson.build
+@@ -19,6 +19,7 @@ gnome_schemas = [
+     'org.gnome.shell.gschema.override',
+     'org.gnome.Terminal.Legacy.Settings.gschema.override',
+     'org.gtk.Settings.FileChooser.gschema.override',
++    'org.gnome.terminal.legacy.profiles:.:ArdillaBelafonteNight.gschema.override',
+ ]
+ 
+ # Generate single schema override file from all input files using cat redirect
+-- 
+2.20.1
+

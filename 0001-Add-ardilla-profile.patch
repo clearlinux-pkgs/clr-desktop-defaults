@@ -1,0 +1,27 @@
+From 4f60748014c7182a9d45903b83eaebb0fdac88cd Mon Sep 17 00:00:00 2001
+From: Athenas Jimenez <athenas.jimenez.gonzalez@intel.com>
+Date: Thu, 14 Mar 2019 17:10:19 -0600
+Subject: [PATCH] Add ardilla profile
+
+---
+ ...gacy.profiles:.:ArdillaBelafonteNight.gschema.override | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+ create mode 100644 schemas/org.gnome.terminal.legacy.profiles:.:ArdillaBelafonteNight.gschema.override
+
+diff --git a/schemas/org.gnome.terminal.legacy.profiles:.:ArdillaBelafonteNight.gschema.override b/schemas/org.gnome.terminal.legacy.profiles:.:ArdillaBelafonteNight.gschema.override
+new file mode 100644
+index 0000000..b785e8c
+--- /dev/null
++++ b/schemas/org.gnome.terminal.legacy.profiles:.:ArdillaBelafonteNight.gschema.override
+@@ -0,0 +1,8 @@
++[org.gnome.terminal.legacy.profiles:.ArdillaBelafonteNight]
++allow-bold=true
++background-color='#202011111b1b'
++bold-color='#96968c8c8383'
++bold-color-same-as-fg=true
++foreground-color='#96968c8c8383'
++palette=['#202011111b1b', '#bebe10100e0e', '#858581816262', '#eaeaa5a54949', '#42426a6a7979', '#979752522c2c', '#98989a9a9c9c', '#96968c8c8383', '#5e5e52525252', '#bebe10100e0e', '#858581816262', '#eaeaa5a54949', '#42426a6a7979', '#979752522c2c', '#98989a9a9c9c', '#d5d5ccccbaba']
++visible-name='Ardilla Belafonte Night'
+-- 
+2.20.1
+
