@@ -6,7 +6,7 @@
 #
 Name     : clr-desktop-defaults
 Version  : 18
-Release  : 36
+Release  : 37
 URL      : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz
 Source0  : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz
 Source99 : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz.asc
