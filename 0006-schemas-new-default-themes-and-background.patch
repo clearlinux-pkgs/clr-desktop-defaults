@@ -1,0 +1,69 @@
+From defe3f6b74a14cb146686f7ce8adbb644b05d21a Mon Sep 17 00:00:00 2001
+From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
+Date: Tue, 30 Apr 2019 17:38:55 -0500
+Subject: [PATCH] schemas: new default themes and background
+
+changes applied from design feedback.
+
+we default now to the 'Materia-compact' theme for gtk-theme and
+gnome shell.
+
+default background and screensaver to new assets.
+
+Signed-off-by: Simental Magana, Marcos <marcos.simental.magana@intel.com>
+---
+ schemas/org.gnome.desktop.background.gschema.override          | 2 +-
+ schemas/org.gnome.desktop.interface.gschema.override           | 2 +-
+ schemas/org.gnome.desktop.screensaver.gschema.override         | 2 +-
+ schemas/org.gnome.desktop.wm.preferences.gschema.override      | 2 +-
+ schemas/org.gnome.shell.extensions.user-theme.gschema.override | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/schemas/org.gnome.desktop.background.gschema.override b/schemas/org.gnome.desktop.background.gschema.override
+index e559484..41b004e 100644
+--- a/schemas/org.gnome.desktop.background.gschema.override
++++ b/schemas/org.gnome.desktop.background.gschema.override
+@@ -1,2 +1,2 @@
+ [org.gnome.desktop.background]
+-picture-uri='file:///usr/share/backgrounds/clearlinux/color_logo_wire_2560x1440.png'
++picture-uri='file:///usr/share/backgrounds/clearlinux/background_07.png'
+diff --git a/schemas/org.gnome.desktop.interface.gschema.override b/schemas/org.gnome.desktop.interface.gschema.override
+index 098bdbf..b8240d1 100644
+--- a/schemas/org.gnome.desktop.interface.gschema.override
++++ b/schemas/org.gnome.desktop.interface.gschema.override
+@@ -1,5 +1,5 @@
+ [org.gnome.desktop.interface]
+ enable-animations=true
+ font-name='Clear Sans 10'
+-gtk-theme='Materia'
++gtk-theme='Materia-compact'
+ icon-theme='Paper'
+diff --git a/schemas/org.gnome.desktop.screensaver.gschema.override b/schemas/org.gnome.desktop.screensaver.gschema.override
+index 5e5fd74..2da6007 100644
+--- a/schemas/org.gnome.desktop.screensaver.gschema.override
++++ b/schemas/org.gnome.desktop.screensaver.gschema.override
+@@ -1,2 +1,2 @@
+ [org.gnome.desktop.screensaver]
+-picture-uri='file:///usr/share/backgrounds/clearlinux/color_logo_wire_2560x1440.png'
++picture-uri='file:///usr/share/backgrounds/clearlinux/background_05.png'
+diff --git a/schemas/org.gnome.desktop.wm.preferences.gschema.override b/schemas/org.gnome.desktop.wm.preferences.gschema.override
+index 0889e53..cfd96cf 100644
+--- a/schemas/org.gnome.desktop.wm.preferences.gschema.override
++++ b/schemas/org.gnome.desktop.wm.preferences.gschema.override
+@@ -1,4 +1,4 @@
+ [org.gnome.desktop.wm.preferences]
+ button-layout='appmenu:minimize,maximize,close'
+-theme='Materia'
++theme='Materia-compact'
+ titlebar-font='Clear Sans Bold 11'
+diff --git a/schemas/org.gnome.shell.extensions.user-theme.gschema.override b/schemas/org.gnome.shell.extensions.user-theme.gschema.override
+index fc4824d..70f3c68 100644
+--- a/schemas/org.gnome.shell.extensions.user-theme.gschema.override
++++ b/schemas/org.gnome.shell.extensions.user-theme.gschema.override
+@@ -1,2 +1,2 @@
+ [org.gnome.shell.extensions.user-theme]
+-name='Materia'
++name='Materia-compact'
+-- 
+2.21.0
+
