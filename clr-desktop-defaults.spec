@@ -6,7 +6,7 @@
 #
 Name     : clr-desktop-defaults
 Version  : 18
-Release  : 38
+Release  : 39
 URL      : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz
 Source0  : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz
 Source99 : https://github.com/clearlinux/clr-desktop-defaults/releases/download/v18/clr-desktop-defaults-18.tar.xz.asc
@@ -25,6 +25,8 @@ Patch3: 0003-fontconfig-ban-75-100-dpi-fonts.patch
 Patch4: 0004-schemas-dash-to-dock-set-dash-max-icon-size-to-42.patch
 Patch5: 0005-Add-terminal-profiles.patch
 Patch6: 0006-schemas-new-default-themes-and-background.patch
+Patch7: 0007-Add-Software-application-to-the-favorite-list.patch
+Patch8: 0008-schemas-dash-to-dock-do-not-animate-show-apps.patch
 
 %description
 clr-desktop-defaults
@@ -76,13 +78,16 @@ license components for the clr-desktop-defaults package.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1556665074
+export SOURCE_DATE_EPOCH=1558537744
+export GCC_IGNORE_WERROR=1
 export LDFLAGS="${LDFLAGS} -fno-lto"
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
 ninja -v -C builddir

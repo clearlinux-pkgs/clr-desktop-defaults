@@ -4,3 +4,5 @@
 0004-schemas-dash-to-dock-set-dash-max-icon-size-to-42.patch
 0005-Add-terminal-profiles.patch
 0006-schemas-new-default-themes-and-background.patch
+0007-Add-Software-application-to-the-favorite-list.patch
+0008-schemas-dash-to-dock-do-not-animate-show-apps.patch
