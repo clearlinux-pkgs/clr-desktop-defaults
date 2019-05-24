@@ -6,3 +6,4 @@
 0006-schemas-new-default-themes-and-background.patch
 0007-Add-Software-application-to-the-favorite-list.patch
 0008-schemas-dash-to-dock-do-not-animate-show-apps.patch
+0009-schemas-more-aggressive-timeouts-for-cursor-blink.patch

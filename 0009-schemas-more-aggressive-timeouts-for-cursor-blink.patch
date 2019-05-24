@@ -1,0 +1,29 @@
+From 1b68feb3b0e9b660726d3ac56f28f99db435c3dc Mon Sep 17 00:00:00 2001
+From: Joe Konno <joe.konno@intel.com>
+Date: Wed, 1 May 2019 08:03:31 -0700
+Subject: [PATCH] schemas: more aggressive timeouts for cursor-blink
+
+Cursor blinks can make an otherwise idle system less so. For that
+reason, be more aggressive about turning off cursor blinks.
+
+End-users can tune cursor blink behavior through the Universal Access
+(Accessibility) applet, or through gsettings/dconf.
+
+Signed-off-by: Joe Konno <joe.konno@intel.com>
+---
+ schemas/org.gnome.desktop.interface.gschema.override | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/schemas/org.gnome.desktop.interface.gschema.override b/schemas/org.gnome.desktop.interface.gschema.override
+index b8240d1..15ca725 100644
+--- a/schemas/org.gnome.desktop.interface.gschema.override
++++ b/schemas/org.gnome.desktop.interface.gschema.override
+@@ -3,3 +3,5 @@ enable-animations=true
+ font-name='Clear Sans 10'
+ gtk-theme='Materia-compact'
+ icon-theme='Paper'
++cursor-blink-timeout=3
++cursor-blink-time=1500
+-- 
+2.21.0
+
