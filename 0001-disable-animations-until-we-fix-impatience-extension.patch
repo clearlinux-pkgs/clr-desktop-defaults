@@ -1,0 +1,35 @@
+From 7cd0a80e3519da1bb174bc83f6d986bc8fa27842 Mon Sep 17 00:00:00 2001
+From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
+Date: Wed, 11 Sep 2019 11:01:02 -0500
+Subject: [PATCH] disable animations until we fix impatience extension
+
+gnome-shell-impatience extension[1] does not work for current
+GNOME 3.34 release, having no animations is better than slow animations
+so let's disable them until we get our snappy animations back.
+
+Current error is as follows:
+```
+gnome-shell[1046]: Extension "impatience@gfxmonk.net" had error: TypeError: St.get_slow_down_factor is not a function
+```
+
+[1]-https://github.com/timbertson/gnome-shell-impatience
+
+Signed-off-by: Simental Magana, Marcos <marcos.simental.magana@intel.com>
+---
+ schemas/org.gnome.desktop.interface.gschema.override | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/schemas/org.gnome.desktop.interface.gschema.override b/schemas/org.gnome.desktop.interface.gschema.override
+index 15ca725..85b97d9 100644
+--- a/schemas/org.gnome.desktop.interface.gschema.override
++++ b/schemas/org.gnome.desktop.interface.gschema.override
+@@ -1,5 +1,5 @@
+ [org.gnome.desktop.interface]
+-enable-animations=true
++enable-animations=false
+ font-name='Clear Sans 10'
+ gtk-theme='Materia-compact'
+ icon-theme='Paper'
+-- 
+2.23.0
+

@@ -4,7 +4,7 @@
 #
 Name     : clr-desktop-defaults
 Version  : 19
-Release  : 41
+Release  : 42
 URL      : https://github.com/clearlinux/clr-desktop-defaults/archive/v19.tar.gz
 Source0  : https://github.com/clearlinux/clr-desktop-defaults/archive/v19.tar.gz
 Summary  : No detailed summary available
@@ -16,6 +16,7 @@ Requires: clr-desktop-defaults-libexec = %{version}-%{release}
 Requires: clr-desktop-defaults-license = %{version}-%{release}
 BuildRequires : buildreq-meson
 BuildRequires : dconf-dev
+Patch1: 0001-disable-animations-until-we-fix-impatience-extension.patch
 
 %description
 clr-desktop-defaults
@@ -61,19 +62,20 @@ license components for the clr-desktop-defaults package.
 
 %prep
 %setup -q -n clr-desktop-defaults-19
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1563314224
+export SOURCE_DATE_EPOCH=1568218064
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
 export FFLAGS="$CFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
 
 %install
