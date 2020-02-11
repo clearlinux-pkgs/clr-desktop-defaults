@@ -4,7 +4,7 @@
 #
 Name     : clr-desktop-defaults
 Version  : 21
-Release  : 44
+Release  : 45
 URL      : https://github.com/clearlinux/clr-desktop-defaults/archive/v21.tar.gz
 Source0  : https://github.com/clearlinux/clr-desktop-defaults/archive/v21.tar.gz
 Summary  : No detailed summary available
@@ -14,6 +14,7 @@ Requires: clr-desktop-defaults-bin = %{version}-%{release}
 Requires: clr-desktop-defaults-data = %{version}-%{release}
 Requires: clr-desktop-defaults-libexec = %{version}-%{release}
 Requires: clr-desktop-defaults-license = %{version}-%{release}
+Requires: clr-desktop-defaults-extras
 BuildRequires : buildreq-meson
 BuildRequires : dconf-dev
 
@@ -42,6 +43,14 @@ Group: Data
 data components for the clr-desktop-defaults package.
 
 
+%package extras
+Summary: extras components for the clr-desktop-defaults package.
+Group: Default
+
+%description extras
+extras components for the clr-desktop-defaults package.
+
+
 %package libexec
 Summary: libexec components for the clr-desktop-defaults package.
 Group: Default
@@ -68,7 +77,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581452633
+export SOURCE_DATE_EPOCH=1581454060
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -96,11 +105,14 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/share/dconf/profile/user
 /usr/share/defaults/clearlinux/dconf/clearlinux-defaults
 /usr/share/defaults/fonts/conf.d/70-disable-x11-75-100-dpi.conf
-/usr/share/glib-2.0/schemas/10_gnome_settings.gschema.override
 /usr/share/glib-2.0/schemas/20_gnome_settings.gschema.override
 /usr/share/xdg/autostart/clr-desktop-files.desktop
 /usr/share/xdg/autostart/clr-migrate-settings.desktop
 /usr/share/xdg/autostart/org.clearlinux.initFlathubRepo.desktop
+
+%files extras
+%defattr(-,root,root,-)
+/usr/share/glib-2.0/schemas/10_gnome_settings.gschema.override
 
 %files libexec
 %defattr(-,root,root,-)
