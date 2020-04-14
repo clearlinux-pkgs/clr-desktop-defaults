@@ -4,7 +4,7 @@
 #
 Name     : clr-desktop-defaults
 Version  : 21
-Release  : 45
+Release  : 46
 URL      : https://github.com/clearlinux/clr-desktop-defaults/archive/v21.tar.gz
 Source0  : https://github.com/clearlinux/clr-desktop-defaults/archive/v21.tar.gz
 Summary  : No detailed summary available
@@ -17,6 +17,7 @@ Requires: clr-desktop-defaults-license = %{version}-%{release}
 Requires: clr-desktop-defaults-extras
 BuildRequires : buildreq-meson
 BuildRequires : dconf-dev
+Patch1: theme-update.patch
 
 %description
 clr-desktop-defaults
@@ -71,17 +72,18 @@ license components for the clr-desktop-defaults package.
 %prep
 %setup -q -n clr-desktop-defaults-21
 cd %{_builddir}/clr-desktop-defaults-21
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581454060
+export SOURCE_DATE_EPOCH=1586896043
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
